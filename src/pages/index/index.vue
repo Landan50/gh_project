@@ -4,7 +4,7 @@
       <view class="nav">
         <view class="location" @click="onLocation">
           <text class="location-city">{{ city }}</text>
-          <text class="location-arrow">⌄</text>
+          <view class="location-arrow"></view>
         </view>
         <view class="search" @click="onSearch">
           <view class="search-icon"></view>
@@ -38,7 +38,10 @@
     <view class="section">
       <view class="section-head">
         <text class="section-title">家政服务</text>
-        <text class="section-more" @click="onMore">全部分类 ›</text>
+        <view class="section-more" @click="onMore">
+          <text class="more-text">全部分类</text>
+          <view class="more-arrow"></view>
+        </view>
       </view>
       <view class="category-grid">
         <view class="category-item" v-for="item in categories" :key="item.name" @click="onService(item.name)">
@@ -60,7 +63,10 @@
     <view class="section">
       <view class="section-head">
         <text class="section-title">严选服务师</text>
-        <text class="section-more" @click="onMore">查看全部 ›</text>
+        <view class="section-more" @click="onMore">
+          <text class="more-text">查看全部</text>
+          <view class="more-arrow"></view>
+        </view>
       </view>
       <scroll-view class="staff-scroll" scroll-x :show-scrollbar="false">
         <view class="staff-card" v-for="staff in staffs" :key="staff.name" @click="onStaff(staff)">
@@ -70,7 +76,10 @@
           </view>
           <text class="staff-name">{{ staff.name }}</text>
           <view class="staff-meta">
-            <text class="staff-score">★ {{ staff.score }}</text>
+            <view class="staff-score">
+              <text class="staff-star">★</text>
+              <text class="staff-score-num">{{ staff.score }}</text>
+            </view>
             <text class="staff-orders">{{ staff.orders }} 单</text>
           </view>
           <text class="staff-city">{{ staff.city }}</text>
@@ -81,7 +90,10 @@
     <view class="section">
       <view class="section-head">
         <text class="section-title">热门服务</text>
-        <text class="section-more" @click="onMore">查看更多 ›</text>
+        <view class="section-more" @click="onMore">
+          <text class="more-text">查看更多</text>
+          <view class="more-arrow"></view>
+        </view>
       </view>
       <view class="hot-card" v-for="item in hotServices" :key="item.name" @click="onBook">
         <view class="hot-cover" :style="{ backgroundColor: item.color }">
@@ -194,7 +206,6 @@ function onStaff(staff) {
 function onBook() {
   showTip('预约功能即将上线')
 }
-
 </script>
 
 <style scoped>
@@ -204,8 +215,8 @@ function onBook() {
 }
 
 .header {
-  background-color: #ffffff;
-  padding: 0 24rpx 20rpx;
+  padding: 0 24rpx 24rpx;
+  background: linear-gradient(135deg, #0d8579, #2fc0a6);
 }
 
 .nav {
@@ -224,19 +235,22 @@ function onBook() {
   max-width: 140rpx;
   font-size: 28rpx;
   font-weight: 600;
-  color: #1f2937;
+  color: #ffffff;
 }
 
 .location-arrow {
-  margin-left: 4rpx;
-  font-size: 26rpx;
-  color: #9ca3af;
+  width: 12rpx;
+  height: 12rpx;
+  margin-left: 8rpx;
+  border-right: 3rpx solid rgba(255, 255, 255, 0.9);
+  border-bottom: 3rpx solid rgba(255, 255, 255, 0.9);
+  transform: rotate(45deg) translateY(-2rpx);
 }
 
 .search {
   flex: 1;
   height: 64rpx;
-  background-color: #f0f3f6;
+  background-color: rgba(255, 255, 255, 0.24);
   border-radius: 32rpx;
   display: flex;
   align-items: center;
@@ -246,7 +260,7 @@ function onBook() {
 .search-icon {
   width: 22rpx;
   height: 22rpx;
-  border: 3rpx solid #9ca3af;
+  border: 3rpx solid rgba(255, 255, 255, 0.9);
   border-radius: 50%;
   position: relative;
   margin-right: 14rpx;
@@ -257,7 +271,7 @@ function onBook() {
   position: absolute;
   width: 3rpx;
   height: 12rpx;
-  background-color: #9ca3af;
+  background-color: rgba(255, 255, 255, 0.9);
   right: -7rpx;
   bottom: -7rpx;
   transform: rotate(-45deg);
@@ -265,7 +279,7 @@ function onBook() {
 
 .search-text {
   font-size: 24rpx;
-  color: #9ca3af;
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .bell-wrap {
@@ -274,7 +288,7 @@ function onBook() {
   width: 56rpx;
   height: 56rpx;
   border-radius: 28rpx;
-  background-color: #f0f3f6;
+  background-color: rgba(255, 255, 255, 0.24);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -283,7 +297,7 @@ function onBook() {
 .bell {
   width: 26rpx;
   height: 26rpx;
-  border: 3rpx solid #4b5563;
+  border: 3rpx solid #ffffff;
   border-radius: 14rpx 14rpx 12rpx 12rpx;
   position: relative;
 }
@@ -295,7 +309,7 @@ function onBook() {
   bottom: -7rpx;
   width: 30rpx;
   height: 3rpx;
-  background-color: #4b5563;
+  background-color: #ffffff;
   border-radius: 2rpx;
 }
 
@@ -305,7 +319,7 @@ function onBook() {
   top: -8rpx;
   width: 6rpx;
   height: 9rpx;
-  background-color: #4b5563;
+  background-color: #ffffff;
   border-radius: 3rpx;
   transform: translateX(-50%);
 }
@@ -326,14 +340,15 @@ function onBook() {
   overflow: hidden;
   margin: 24rpx;
   border-radius: 28rpx;
-  padding: 40rpx 32rpx 36rpx;
-  background: linear-gradient(135deg, #0b877c, #2fc0a6);
+  padding: 36rpx 32rpx;
+  background-color: #ffffff;
+  box-shadow: 0 10rpx 30rpx rgba(15, 23, 42, 0.06);
 }
 
 .deco {
   position: absolute;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.14);
+  background-color: rgba(13, 133, 121, 0.08);
 }
 
 .deco-1 {
@@ -358,19 +373,19 @@ function onBook() {
 }
 
 .banner-title {
-  font-size: 42rpx;
+  font-size: 40rpx;
   font-weight: 700;
-  color: #ffffff;
+  color: #1f2937;
 }
 
 .banner-sub {
   margin-top: 12rpx;
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.92);
+  color: #6b7280;
 }
 
 .banner-tags {
-  margin-top: 26rpx;
+  margin-top: 24rpx;
   display: flex;
 }
 
@@ -379,23 +394,23 @@ function onBook() {
   padding: 8rpx 16rpx;
   border-radius: 20rpx;
   font-size: 20rpx;
-  color: #0b877c;
-  background-color: rgba(255, 255, 255, 0.94);
+  color: #0d8579;
+  background-color: rgba(13, 133, 121, 0.1);
 }
 
 .banner-btn {
   position: absolute;
   right: 32rpx;
-  bottom: 36rpx;
+  bottom: 34rpx;
   padding: 14rpx 30rpx;
   border-radius: 32rpx;
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #0d8579, #17b39a);
 }
 
 .banner-btn-text {
   font-size: 24rpx;
   font-weight: 600;
-  color: #0b877c;
+  color: #ffffff;
 }
 
 .section {
@@ -416,8 +431,25 @@ function onBook() {
 }
 
 .section-more {
+  display: flex;
+  align-items: center;
   font-size: 22rpx;
   color: #9ca3af;
+}
+
+.more-text {
+  font-size: 22rpx;
+  line-height: 1;
+  color: #9ca3af;
+}
+
+.more-arrow {
+  width: 10rpx;
+  height: 10rpx;
+  margin-left: 6rpx;
+  border-top: 2rpx solid #b8c0cc;
+  border-right: 2rpx solid #b8c0cc;
+  transform: rotate(45deg);
 }
 
 .category-grid {
@@ -544,7 +576,21 @@ function onBook() {
 }
 
 .staff-score {
+  display: flex;
+  align-items: center;
+}
+
+.staff-star {
+  font-size: 22rpx;
+  line-height: 1;
+  color: #f0a24b;
+  transform: translateY(-1rpx);
+}
+
+.staff-score-num {
+  margin-left: 4rpx;
   font-size: 20rpx;
+  line-height: 1;
   color: #f0a24b;
 }
 
@@ -629,7 +675,9 @@ function onBook() {
 .hot-price-symbol {
   font-size: 22rpx;
   font-weight: 600;
+  line-height: 1;
   color: #ff7a45;
+  transform: translateY(-2rpx);
 }
 
 .hot-price {
@@ -681,7 +729,7 @@ function onBook() {
 .book-btn {
   padding: 18rpx 36rpx;
   border-radius: 40rpx;
-  background: linear-gradient(135deg, #0b877c, #17b39a);
+  background: linear-gradient(135deg, #0d8579, #17b39a);
 }
 
 .book-btn-text {
@@ -689,60 +737,4 @@ function onBook() {
   font-weight: 600;
   color: #ffffff;
 }
-
-.tab-bar {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 30;
-  padding: 12rpx 0 calc(12rpx + env(safe-area-inset-bottom));
-  border-top: 1rpx solid #eef0f3;
-  background-color: #ffffff;
-  display: flex;
-}
-
-.tab-item {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.tab-icon {
-  width: 56rpx;
-  height: 56rpx;
-  border-radius: 18rpx;
-  background-color: #f0f3f6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.tab-icon.active {
-  background-color: rgba(15, 157, 143, 0.12);
-}
-
-.tab-glyph {
-  font-size: 26rpx;
-  color: #6b7280;
-}
-
-.tab-icon.active .tab-glyph {
-  font-weight: 700;
-  color: #0f9d8f;
-}
-
-.tab-name {
-  margin-top: 6rpx;
-  font-size: 20rpx;
-  color: #6b7280;
-}
-
-.tab-name.active {
-  font-weight: 600;
-  color: #0f9d8f;
-}
 </style>
-
-

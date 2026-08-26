@@ -13,6 +13,13 @@
 				"navigationStyle": "custom",
 				"navigationBarTitleText": "我的订单"
 			}
+		},
+		{
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "我的"
+			}
 		}
 	],
 	"globalStyle": {

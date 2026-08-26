@@ -30,6 +30,8 @@ function onTab(tab) {
     uni.reLaunch({ url: '/pages/index/index' })
   } else if (tab.key === 'order') {
     uni.navigateTo({ url: '/pages/order/order' })
+  } else if (tab.key === 'mine') {
+    uni.navigateTo({ url: '/pages/mine/mine' })
   } else {
     uni.showToast({ title: tab.name + '模块即将上线', icon: 'none' })
   }
@@ -91,3 +93,4 @@ function onTab(tab) {
   color: #0f9d8f;
 }
 </style>
+

@@ -136,8 +136,8 @@ function onAction(text) {
 }
 
 .header {
-  background-color: #ffffff;
-  padding-bottom: 20rpx;
+  padding-bottom: 0;
+  background: linear-gradient(135deg, #0d8579, #2fc0a6);
 }
 
 .nav {
@@ -152,13 +152,16 @@ function onAction(text) {
   text-align: center;
   font-size: 32rpx;
   font-weight: 600;
-  color: #1f2937;
+  color: #ffffff;
 }
 
 .tabs {
   display: flex;
   align-items: center;
-  padding: 20rpx 24rpx 12rpx;
+  margin: 20rpx 24rpx 0;
+  padding: 8rpx 24rpx;
+  border-radius: 20rpx;
+  background-color: #ffffff;
 }
 
 .tab {
@@ -303,5 +306,6 @@ function onAction(text) {
   height: 180rpx;
 }
 </style>
+
 
 
